@@ -18,9 +18,14 @@ function injuryCounter() {
 		will break when it finds one in the for loop ↓
 	*/
 	for (i = 1; i < 200; i++){
-		if (tab.getRange("J" + (thisRow + i)).getValue() != "") {					// what happens when it finds a cell with data:
-			lastInjury = new Date (tab.getRange("D" + (thisRow + i)).getValue());	// it sets lastInjury to the date value found in that row
-			break;																	// then stops the loop
+		// what happens when it finds a cell with data:
+		if (tab.getRange("P" + (thisRow + i)).getValue() != "") {
+			// sets lastInjury to the date value found in that row
+			lastInjury = new Date(tab.getRange("D" + (thisRow + i)).getValue());
+			// modifies that date to midnight, this way we don't get a miscount
+			lastInjury.setHours(0,0,0,0);
+			// stops the loop
+			break;
 		};
 	};
 
